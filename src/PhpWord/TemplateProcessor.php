@@ -863,10 +863,16 @@ class TemplateProcessor
         // Shift-Enter
         if (is_array($replace)) {
             foreach ($replace as &$item) {
+								// Miroslav
+								$item = str_replace(array('&', '<', '>', '\'', '"'), array('&amp;', '&lt;', '&gt;', '&apos;', '&quot;'), $item);
+								// end Miroslav
                 $item = preg_replace('~\R~u', '</w:t><w:br/><w:t>', $item);
             }
             unset($item);
         } else {
+						// Miroslav
+						$replace = str_replace(array('&', '<', '>', '\'', '"'), array('&amp;', '&lt;', '&gt;', '&apos;', '&quot;'), $replace);
+						// end Miroslav
             $replace = preg_replace('~\R~u', '</w:t><w:br/><w:t>', $replace);
         }
 
